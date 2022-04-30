@@ -1,0 +1,25 @@
+{
+  "name": "csd-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jensen-und-komplizen/csd-javascript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jensen-und-komplizen/csd-javascript/issues"
+  },
+  "homepage": "https://github.com/jensen-und-komplizen/csd-javascript#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
