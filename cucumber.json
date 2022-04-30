@@ -1,0 +1,9 @@
+{
+    "default": {
+        "paths": [
+            "test/features/**/*.feature"
+        ],
+        "publishQuiet": true
+    }
+
+}
