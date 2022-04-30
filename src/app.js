@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
         "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin> \n" +
         "<link href=\"https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=VT323&display=swap\" rel=\"stylesheet\">"+
         "<link rel=\"stylesheet\" type=\"text/css\" href=\"/game.css\" />"+
-        "<title>An Adventure</title></head><body><h1>Hello Gamers</h1><div id=\"gameInfo\"><p>Welcome to our new Adventure!<br>" + adventure.lastResponse +
+        "<title>An Adventure</title></head><body><h1>Hello Gamers</h1><div id=\"gameInfo\"><p>Welcome to our new Adventure!<br>" + adventure.start() +
         "</p></div><form id=\"commandForm\" ><input id=\"command\" type=\"text\"/></form>"+
         "</body></html>")
 })
