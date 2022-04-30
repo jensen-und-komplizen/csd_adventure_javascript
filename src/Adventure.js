@@ -4,6 +4,7 @@ class Adventure {
     #loo;
     #currentRoom;
     lastResponse;
+    #counter = 0;
 
     start() {
         this.#loo = new Loo()
@@ -32,6 +33,10 @@ class Adventure {
             case "look at toilet paper":
                 response = "Hmm. Maybe I should use it before leaving this room."
                 break
+            case "count":
+                this.#counter++;
+                response = "The counter is at " + this.#counter;
+                break;
             default:
                 response = "I don't understand " + command
                 break
