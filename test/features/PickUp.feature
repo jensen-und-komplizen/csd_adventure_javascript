@@ -5,4 +5,3 @@ Feature: As a player I can pick up things in order to use them later
     When I pick up the coin
     Then I should find it in my pockets
     And I should not be able to see it when I look around
-    And I should not be able to see it when I look around
