@@ -1,12 +1,15 @@
 const Loo = require("./Rooms/Loo");
+const Player = require("./Characters/Player");
 
 class Adventure {
     #loo;
     #currentRoom;
     lastResponse;
     #counter = 0;
+    player;
 
     start() {
+        this.player = new Player()
         this.#loo = new Loo()
         this.#currentRoom = this.#loo
         this.lastResponse = this.#currentRoom.getDescription()
@@ -34,9 +37,17 @@ class Adventure {
                 response = "Hmm. Maybe I should use it before leaving this room."
                 break
             case "count":
-                this.#counter++;
-                response = "The counter is at " + this.#counter;
-                break;
+                this.#counter++
+                response = "The counter is at " + this.#counter
+                break
+            case "pick up coin":
+                if (this.player.pickUp('coin')) {
+                    this.#loo.removeItem('coin')
+                    response = "You picked up the coin."
+                } else {
+                    response = "There is nothing to pick up."
+                }
+                break
             default:
                 response = "I don't understand " + command
                 break
