@@ -9,16 +9,16 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package-lock.json" }}
+            - v2-dependencies-{{ checksum "package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
-            - dependencies-
+            - v2-dependencies-
       - run:
           name: Download Dependencies
           command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v2-dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: Verify (Standard)
           command: npm run test
-      - save_cache:
-          paths:
-            - ~/node_modules
-          key: dependencies-{{ checksum "package-lock.json" }}
