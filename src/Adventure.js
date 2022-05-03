@@ -22,42 +22,30 @@ class Adventure {
   tell(command) {
     let response;
     console.log(command);
-
     switch (command) {
       case "look around":
         response = this.#currentRoom.getDetailedDescription();
         break;
-      case "look at magazines":
-        response =
-          "You see a very much used Micky Mouse magazine, a fairly used Chippendale fanzine, a very old but unusable Playboy and what seems to be a scrum guide 2009 in mint condition.";
-        break;
-      case "look at door":
-        response = "Seems to be the door to the washroom.";
-        break;
-      case "look at coin":
-        response = "It's a pretty coin. Very shiny. But it is stuck.";
-        break;
-      case "look at toilet paper":
-        response = "Hmm. Maybe I should use it before leaving this room.";
-        break;
       case "go to washroom":
         this.#currentRoom = this.#washRoom;
-        response = "Maybe I should start the washing machine";
+        response = "You enter the washroom.";
         break;
       case "count":
         this.#counter++;
         response = "The counter is at " + this.#counter;
         break;
-      case "pick up coin":
-        if (this.player.pickUp("coin")) {
-          this.#loo.removeItem("coin");
-          response = "You picked up the coin.";
+      case "pick up dollar":
+        if (this.player.pickUp("dollar")) {
+          this.#loo.removeItem("dollar");
+          response = "You picked up the dollar.";
         } else {
           response = "There is nothing to pick up.";
         }
-        break;
       default:
-        response = "I don't understand " + command;
+        response = this.#currentRoom.tell(command);
+        if (!response) {
+          response = "I don't understand " + command;
+        }
         break;
     }
     this.lastResponse = response;
