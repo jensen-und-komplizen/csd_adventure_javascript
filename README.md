@@ -17,3 +17,9 @@ run `npm install` in the console
 ### Start the app
 
 `npm install`
+
+## Changelog
+
+### Sprint 1
+
+- Möglichkeit in den Waschraum zu gehen

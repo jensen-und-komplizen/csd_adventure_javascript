@@ -42,7 +42,7 @@ class Adventure {
         break;
       case "go to wash room":
         this.#currentRoom = this.#washRoom;
-        response = "Maybe I should start it this washing machine";
+        response = "Maybe I should start the washing machine";
         break;
       case "count":
         this.#counter++;
