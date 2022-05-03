@@ -1,0 +1,28 @@
+const Console = require("console");
+
+class WashRoom {
+  #items = new Array();
+
+  constructor() {
+    this.#items.push("washing machine");
+  }
+
+  removeItem(item) {
+    for (let index = 0; index < this.#items.length; index++) {
+      let currentItem = this.#items[index];
+      if (currentItem.includes(item)) {
+        this.#items.splice(index, 1);
+      }
+    }
+  }
+
+  getDescription() {
+    return "You wake up on the wash room. You have no idea where or who you are.";
+  }
+
+  getDetailedDescription() {
+    return "You see " + this.#items.join(", ") + ".";
+  }
+}
+
+module.exports = WashRoom;
