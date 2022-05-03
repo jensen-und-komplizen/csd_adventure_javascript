@@ -35,7 +35,7 @@ class Adventure {
         response = "Seems to be the door to the washroom.";
         break;
       case "look at dollar":
-        response = "It's a pretty dollar. Very shiny. But it is stuck.";
+        response = "It's a pretty dollar. Very shiny.";
         break;
       case "look at toilet paper":
         response = "Hmm. Maybe I should use it before leaving this room.";
