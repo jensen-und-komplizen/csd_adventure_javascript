@@ -4,7 +4,10 @@ class WashRoom {
   #items = new Array();
 
   constructor() {
-    this.#items.push("washing machine");
+    this.#items.push("sink");
+    this.#items.push("paper towels");
+    this.#items.push("mirror");
+    this.#items.push("basket");
   }
 
   removeItem(item) {
@@ -17,7 +20,7 @@ class WashRoom {
   }
 
   getDescription() {
-    return "You wake up on the wash room. You have no idea where or who you are.";
+    return "You are in the washroom, the water in the sink is running!!!";
   }
 
   getDetailedDescription() {

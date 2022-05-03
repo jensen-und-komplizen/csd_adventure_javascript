@@ -40,7 +40,7 @@ class Adventure {
       case "look at toilet paper":
         response = "Hmm. Maybe I should use it before leaving this room.";
         break;
-      case "go to wash room":
+      case "go to washroom":
         this.#currentRoom = this.#washRoom;
         response = "Maybe I should start the washing machine";
         break;
