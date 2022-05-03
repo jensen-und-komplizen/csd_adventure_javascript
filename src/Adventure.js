@@ -34,8 +34,8 @@ class Adventure {
       case "look at door":
         response = "Seems to be the door to the washroom.";
         break;
-      case "look at coin":
-        response = "It's a pretty coin. Very shiny. But it is stuck.";
+      case "look at dollar":
+        response = "It's a pretty dollar. Very shiny. But it is stuck.";
         break;
       case "look at toilet paper":
         response = "Hmm. Maybe I should use it before leaving this room.";
@@ -48,10 +48,10 @@ class Adventure {
         this.#counter++;
         response = "The counter is at " + this.#counter;
         break;
-      case "pick up coin":
-        if (this.player.pickUp("coin")) {
-          this.#loo.removeItem("coin");
-          response = "You picked up the coin.";
+      case "pick up dollar":
+        if (this.player.pickUp("dollar")) {
+          this.#loo.removeItem("dollar");
+          response = "You picked up the dollar.";
         } else {
           response = "There is nothing to pick up.";
         }

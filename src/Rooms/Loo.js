@@ -7,7 +7,7 @@ class Loo {
     constructor() {
         this.#items.push('a pretty dirty door, with some nasty jokes on it')
         this.#items.push('some toilet paper')
-        this.#items.push('a coin')
+        this.#items.push('a dollar')
         this.#items.push('a few magazines')
     }
 

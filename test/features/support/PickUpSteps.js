@@ -13,20 +13,20 @@ Given('I am in the loo', function () {
     assertTrue(adventure.lastResponse.includes('loo'))
 })
 
-Given('I see a coin', function(){
+Given('I see a dollar', function(){
     response = adventure.tell('look around')
-    assertTrue(response.includes('coin'))
+    assertTrue(response.includes('dollar'))
 })
 
-When('I pick up the coin', function () {
-    adventure.tell('pick up coin')
+When('I pick up the dollar', function () {
+    adventure.tell('pick up dollar')
 })
 
 Then('I should find it in my pockets', function () {
-    assertTrue(adventure.player.has('coin'))
+    assertTrue(adventure.player.has('dollar'))
 })
 
 Then('I should not be able to see it when I look around', function(){
     response = adventure.tell('look around')
-    assertTrue(!response.includes('coin'))
+    assertTrue(!response.includes('dollar'))
 })
