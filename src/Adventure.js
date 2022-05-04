@@ -22,6 +22,8 @@ class Adventure {
   tell(command) {
     let response;
     console.log(command);
+    command = command.toLowerCase();
+    
     switch (command) {
       case "look around":
         response = this.#currentRoom.getDetailedDescription();
