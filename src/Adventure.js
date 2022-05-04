@@ -66,7 +66,7 @@ class Adventure {
       default:
         response = this.#currentRoom.tell(command);
         if (!response) {
-          response = "I don't understand" + command + ", you can try 'help' for some support!";
+          response = "I don't understand " + command + ", you can try 'help' for some support!";
         }
         break;
     }
