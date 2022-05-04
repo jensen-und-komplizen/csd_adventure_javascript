@@ -3,8 +3,10 @@ const Console = require("console");
 class Loo {
 
     #items = new Array()
+    #player
 
-    constructor() {
+    constructor(player) {
+        this.#player = player
         this.#items.push('a pretty dirty door, with some nasty jokes on it')
         this.#items.push('some toilet paper')
         this.#items.push('a dollar')
@@ -36,8 +38,8 @@ class Loo {
             case "door":
                 response = "Seems to be the door to the washroom."
                 break
-            case "look at coin":
-                response = "It's a pretty coin. Very shiny. But it is stuck."
+            case "look at dollar":
+                response = "It's a pretty dollar. Very shiny."
                 break
             case "look at toilet paper":
             case "toilet paper":
@@ -55,6 +57,20 @@ class Loo {
             case "joke":
                 response = "What did the toaster say to the sliced bread? I want you inside me!"
                 break;
+            case "take dollar":
+            case "steal dollar":
+            case "dollar":
+            case "a dollar":
+            case "pick up a dollar":
+            case "take a dollar":
+            case "pick up dollar":
+                if (!this.#player.has("dollar") && this.#player.pickUp("dollar")) {
+                    this.removeItem("dollar");
+                    response = "You picked up the dollar.";
+                } else {
+                    response = "There is nothing to pick up.";
+                }
+                break
        }
         return response;
     }

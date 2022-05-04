@@ -14,7 +14,7 @@ class Adventure {
 
   start() {
     this.player = new Player();
-    this.#loo = new Loo();
+    this.#loo = new Loo(this.player);
     this.#washRoom = new WashRoom();
     this.#help = new Help();
     this.#currentRoom = this.#loo;
@@ -51,19 +51,6 @@ class Adventure {
         this.#counter++;
         response = "The counter is at " + this.#counter;
         break;
-      case "pick up dollar":
-      case "take dollar":
-      case "steal dollar":
-      case "dollar":
-      case "a dollar":
-      case "pick up a dollar":
-      case "take a dollar":
-        if (this.player.pickUp("dollar")) {
-          this.#loo.removeItem("dollar");
-          response = "You picked up the dollar.";
-        } else {
-          response = "There is nothing to pick up.";
-        }
       default:
         response = this.#currentRoom.tell(command);
         if (!response) {
