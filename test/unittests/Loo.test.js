@@ -22,7 +22,3 @@ test('command "joke" should work', () => {
     const response = loo.tell("joke")
     expect(response).toContain('the toaster say');
 });
-
-test('building test', () => {
-    expect(true).toBe(false);
-})
