@@ -1,10 +1,12 @@
 const Loo = require("./Rooms/Loo");
+const Help = require("./public/Help");
 const Player = require("./Characters/Player");
 const WashRoom = require("./Rooms/WashRoom");
 
 class Adventure {
   #loo;
   #washRoom;
+  #help;
   #currentRoom;
   lastResponse;
   #counter = 0;
@@ -14,6 +16,7 @@ class Adventure {
     this.player = new Player();
     this.#loo = new Loo();
     this.#washRoom = new WashRoom();
+    this.#help = new Help();
     this.#currentRoom = this.#loo;
     this.lastResponse = this.#currentRoom.getDescription();
     return this.lastResponse;
@@ -25,6 +28,9 @@ class Adventure {
     command = command.toLowerCase();
     
     switch (command) {
+      case 'help':
+        response = this.#help.getHelpText()
+        break
       case "look around":
         response = this.#currentRoom.getDetailedDescription();
         break;
