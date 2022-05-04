@@ -17,3 +17,9 @@ test('tell with mixed case should work', () => {
     adventure.start();
     expect(adventure.tell("look Around")).toContain('You see a pretty');
 });
+
+test('tell with mixed case should work', () => {
+    adventure = new Adventure()
+    adventure.start();
+    expect(adventure.tell("look at PlayBoy")).toContain('rather not');
+});
