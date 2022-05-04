@@ -29,12 +29,20 @@ class Adventure {
     
     switch (command) {
       case 'help':
+      case "":
         response = this.#help.getHelpText()
         break
+      case "observe":
+      case "scout":
+      case "scout around":
+      case "look":
       case "look around":
         response = this.#currentRoom.getDetailedDescription();
         break;
       case "go to washroom":
+      case "go washroom":
+      case "move to washroom":
+      case "enter washroom":
         this.#currentRoom = this.#washRoom;
         response = "You enter the washroom.";
         break;
@@ -43,6 +51,12 @@ class Adventure {
         response = "The counter is at " + this.#counter;
         break;
       case "pick up dollar":
+      case "take dollar":
+      case "steal dollar":
+      case "dollar":
+      case "a dollar":
+      case "pick up a dollar":
+      case "take a dollar":
         if (this.player.pickUp("dollar")) {
           this.#loo.removeItem("dollar");
           response = "You picked up the dollar.";
