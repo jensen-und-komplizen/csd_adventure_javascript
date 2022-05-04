@@ -26,4 +26,5 @@ run `npm install` in the console
 
 ### Sprint 2
 
-- Ich brauche Hilfe
+- Ich brauche Hilfe 
+- Coin durch Dollar ersetzt.
