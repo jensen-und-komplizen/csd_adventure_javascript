@@ -16,3 +16,9 @@ test('Look at nasty jokes should work', () => {
     const response = loo.tell("read nasty joke")
     expect(response).toContain('the toaster say');
 });
+
+test('command "joke" should work', () => {
+    loo = new Loo();
+    const response = loo.tell("joke")
+    expect(response).toContain('the toaster say');
+});
