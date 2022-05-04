@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/public'));
 adventure = new Adventure()
 
 app.get('/command', (req, res) => {
-    res.send(adventure.tell(req.query.command));
+    res.send(adventure.tell(req.query.command.toLowerCase()));
 })
 
 
