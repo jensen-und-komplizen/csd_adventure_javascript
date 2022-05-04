@@ -23,3 +23,7 @@ run `npm install` in the console
 ### Sprint 1
 
 - Möglichkeit in den Waschraum zu gehen
+
+### Sprint 2
+
+- Ich brauche Hilfe
