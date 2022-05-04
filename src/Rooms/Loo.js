@@ -41,7 +41,7 @@ class Loo {
             case "read nasty joke":
                 response = "What did the toaster say to the sliced bread? I want you inside me!"
                 break;
-x       }
+       }
         return response;
     }
 
