@@ -80,7 +80,7 @@ class Loo {
     }
 
     getDetailedDescription() {
-        return "You see " + this.#items.join(', ') + "."
+        return "You see " + this.#items.join(', ') + ". An open door leads to the Washroom"
     }
 }
 

@@ -10,6 +10,10 @@ class WashRoom {
     this.#items.push("basket");
   }
 
+  tell(command) {
+    return null;
+  }
+
   removeItem(item) {
     for (let index = 0; index < this.#items.length; index++) {
       let currentItem = this.#items[index];

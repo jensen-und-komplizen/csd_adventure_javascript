@@ -12,6 +12,7 @@ class Help {
     this.#help.push('- read [item]<br>')
     this.#help.push('- look at [item]<br>')
     this.#help.push('- pick up [item]<br>')
+    this.#help.push('- go to [room]<br>')
     this.#help.push('- count<br>')
   }
 

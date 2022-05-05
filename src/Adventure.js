@@ -40,7 +40,14 @@ class Adventure {
       case "look around":
         response = this.#currentRoom.getDetailedDescription();
         break;
+      case "washroom":
+      case "enter the washroom":
+      case "go to the washroom":
       case "go to washroom":
+      case "go through door":
+      case "enter door":
+      case "enter the door":
+      case "door":
       case "go washroom":
       case "move to washroom":
       case "enter washroom":
@@ -60,6 +67,10 @@ class Adventure {
     }
     this.lastResponse = response;
     return response;
+  }
+
+  getCurrentRoom() {
+    return this.#currentRoom;
   }
 }
 
