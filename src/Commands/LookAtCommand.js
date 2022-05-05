@@ -9,7 +9,9 @@ class LookAtCommand {
     }
 
     execute(command, room, player) {
-        
+
     }
 
 }
+
+module.exports = LookAtCommand
