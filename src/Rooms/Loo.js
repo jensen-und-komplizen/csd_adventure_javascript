@@ -10,14 +10,25 @@ class Loo {
         this.#items.push('a pretty dirty door, with some nasty jokes on it')
         this.#items.push('some toilet paper')
         this.#items.push('a dollar')
+        this.#items.push({
+            id: 'euro001',
+            name: 'an euro',
+            helpText: 'It is a one euro coin.',
+        })
         this.#items.push('a few magazines')
     }
 
     removeItem(item) {
         for(let index = 0; index < this.#items.length; index++) {
-            let currentItem = this.#items[index]
-            if (currentItem.includes(item)) {
-                this.#items.splice(index, 1)
+            let currentItem = this.#items[index];
+            if(typeof currentItem === 'string') {
+                if (currentItem.includes(item)) {
+                    this.#items.splice(index, 1)
+                }
+            } else if(typeof currentItem === 'object') {
+                if (currentItem.id === item) {
+                    this.#items.splice(index, 1)
+                }
             }
         }
     }
@@ -71,8 +82,26 @@ class Loo {
                     response = "There is nothing to pick up.";
                 }
                 break
+            case "take euro":
+            case "steal euro":
+            case "euro":
+            case "a euro":
+            case "pick up a euro":
+            case "take a euro":
+            case "pick up euro":
+                if (!this.#player.has("euro") && this.#player.pickUp("euro")) {
+                    this.removeItem("euro001");
+                    response = "You picked up the euro.";
+                } else {
+                    response = "There is nothing to pick up.";
+                }
+                break
        }
         return response;
+    }
+
+    getItems() {
+        return this.#items;
     }
 
     getDescription() {
@@ -80,7 +109,16 @@ class Loo {
     }
 
     getDetailedDescription() {
-        return "You see " + this.#items.join(', ') + "."
+        let allItems = [];
+        for(let index = 0; index < this.#items.length; index++) {
+            let currentItem = this.#items[index];
+            if(typeof currentItem === 'string') {
+                allItems.push(currentItem);
+            } else if(typeof currentItem === 'object') {
+                allItems.push(currentItem.name);
+            }
+        }
+        return "You see " + allItems.join(', ') + "."
     }
 }
 

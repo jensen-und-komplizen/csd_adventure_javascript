@@ -19,6 +19,10 @@ class WashRoom {
     }
   }
 
+  getItems() {
+    return this.#items;
+  }
+
   getDescription() {
     return "You are in the washroom, the water in the sink is running!!!";
   }

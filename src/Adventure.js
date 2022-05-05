@@ -31,7 +31,7 @@ class Adventure {
     switch (command) {
       case 'help':
       case "":
-        response = this.#help.getHelpText()
+        response = this.displayHelp()
         break
       case "observe":
       case "scout":
@@ -60,6 +60,10 @@ class Adventure {
     }
     this.lastResponse = response;
     return response;
+  }
+
+  displayHelp() {
+    return this.#help.getHelpText(this.#currentRoom.getItems());
   }
 }
 
