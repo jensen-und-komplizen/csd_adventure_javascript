@@ -54,6 +54,22 @@ class Adventure {
                 this.#currentRoom = this.#washRoom
                 response = 'You enter the washroom.'
                 break
+            case 'loo':
+            case 'enter the loo':
+            case 'go to the loo':
+            case 'go to loo':
+            case 'go back to loo':
+            case 'go loo':
+            case 'move to loo':
+            case 'enter loo':
+                if (this.#currentRoom === this.#loo) {
+                    response = 'You are already in the loo.'
+                    break
+                }
+
+                this.#currentRoom = this.#loo
+                response = 'You enter the loo.'
+                break
             case 'count':
                 this.#counter++
                 response = 'The counter is at ' + this.#counter
