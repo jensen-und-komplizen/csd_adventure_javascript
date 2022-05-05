@@ -1,5 +1,4 @@
 class Player {
-
     #numberOfPockets = 4
     #pockets = new Array()
 
@@ -20,8 +19,6 @@ class Player {
             this.#pockets.splice(this.#pockets.indexOf(item), 1)
         }
     }
-
-
 }
 
 module.exports = Player

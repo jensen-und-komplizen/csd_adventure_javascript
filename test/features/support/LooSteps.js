@@ -18,3 +18,12 @@ When('I look around', function () {
 Then('I should find myself on the loo', function () {
     assertTrue(response.includes('loo'));
 })
+
+When('I read a nasty joke', function() {
+    adventure.tell('read nasty joke')
+    response = adventure.lastResponse
+})
+
+Then('I should get a nasty joke about a toaster and sliced bread', function () {
+    assertTrue(response.includes('What did the toaster say to the sliced bread?'));
+})
