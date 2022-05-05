@@ -8,6 +8,7 @@ class Adventure {
   #washRoom;
   #help;
   #currentRoom;
+  #commands;
   lastResponse;
   #counter = 0;
   player;
@@ -18,8 +19,14 @@ class Adventure {
     this.#washRoom = new WashRoom();
     this.#help = new Help();
     this.#currentRoom = this.#loo;
+    this.#commands = createCommands();
     this.lastResponse = this.#currentRoom.getDescription();
     return this.lastResponse;
+  }
+
+  createCommands() {
+    let result = [];
+    result.push(new LookAtCommand());
   }
 
   tell(command) {
@@ -27,6 +34,17 @@ class Adventure {
     let originalCommand = command;
     console.log(command);
     command = command.toLowerCase();
+    this.#commands.forEach(commandObj => {
+      if (commandObj.isResponsible(command)) {
+        foundResponsibleCommand = true;
+        response = commandObj.execute(command, this.#currentRoom, this.player);
+      }
+    });
+
+    if (response) {
+      this.lastResponse = response;
+      return response;
+    }
 
     switch (command) {
       case 'help':
