@@ -21,10 +21,11 @@ class Help {
         for (let index = 0; index<itemList.length; index++) {
             let currentItem = itemList[index];
             if (typeof currentItem === 'string') {
-                allItems.push(currentItem);
-            } else if (typeof currentItem === 'object') {
-                allItems.push(currentItem.name);
+                currentItem = {
+                    name: currentItem
+                }
             }
+            allItems.push(currentItem.name);
         }
         return this.#help.concat('<br> find out which actions can be used for these items: <br>')
           .concat(allItems.join(', '))
