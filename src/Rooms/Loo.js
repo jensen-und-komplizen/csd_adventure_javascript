@@ -21,7 +21,9 @@ class Loo {
         this.#items.push({
             id: 'euro001',
             name: 'an euro',
-            helpText: 'It is a one euro coin.',
+            type: 'item',
+            helpSearch: ['euro'],
+            helpText: 'It is a one euro coin.<br>You can do: <br>"look at [item] <br>"take [item]"',
         })
         this.#items.push('a few magazines')
     }
@@ -89,14 +91,15 @@ class Loo {
             case 'pick up a dollar':
             case 'take a dollar':
             case 'pick up dollar':
-                if (
-                    !this.#player.has('dollar') &&
-                    this.#player.pickUp('dollar')
-                ) {
-                    this.removeItem('dollar')
-                    response = 'You picked up the dollar.'
-                } else {
-                    response = 'There is nothing to pick up.'
+                this.#items.map((item) => {
+                    if(item === "a dollar") {
+                        this.#player.pickUp('dollar')
+                        this.removeItem('dollar')
+                        response = 'You picked up the dollar.'
+                    }
+                })
+                if(response === null) {
+                    response = "There is no dollar to pick up.";
                 }
                 break
             case "take euro":
@@ -106,11 +109,15 @@ class Loo {
             case "pick up a euro":
             case "take a euro":
             case "pick up euro":
-                if (!this.#player.has("euro") && this.#player.pickUp("euro")) {
-                    this.removeItem("euro001");
-                    response = "You picked up the euro.";
-                } else {
-                    response = "There is nothing to pick up.";
+                this.#items.map((item) => {
+                    if(item.id === "euro001") {
+                        this.#player.pickUp(item)
+                        this.removeItem("euro001")
+                        response = "You picked up the euro.";
+                    }
+                })
+                if(response === null) {
+                    response = "There is no euro to pick up.";
                 }
                 break
         }

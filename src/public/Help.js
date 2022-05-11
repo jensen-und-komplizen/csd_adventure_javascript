@@ -1,7 +1,9 @@
 class Help {
     #help = []
+    #player
 
-    constructor() {
+    constructor(player) {
+        this.#player = player
         this.#help.push('Help! <br>')
         this.#help.push('You can use the following commands. <br>')
         this.#help.push('Commands: <br>')
@@ -16,21 +18,55 @@ class Help {
         this.#help.push('- go to  [item]<br>')
     }
 
-    getHelpText(itemList) {
+    getHelpText(itemList, command, player) {
+        const commandList = command.split(' ')
+        const allItems = this.getAllItems(itemList)
+        this.#player = player
+
+        if(commandList.length > 1) {
+            let helpItem = null
+            allItems.map((item) => {
+                commandList.map((term) => {
+                    if (helpItem === null && item.helpSearch.includes(term)) {
+                        helpItem = item;
+                    }
+                })
+            })
+            if (helpItem === null && this.#player.getPocket().length !== 0) {
+                this.#player.getPocket().map((item) => {
+                    commandList.map((term) => {
+                        if (helpItem === null && item.helpSearch.includes(term)) {
+                            helpItem = item;
+                        }
+                    })
+                })
+            }
+            return helpItem && helpItem.helpText;
+        } else {
+            let itemListStr = [];
+            allItems.map((item) => {
+                itemListStr.push(item.name)
+            })
+            return this.#help.concat('<br> find out which actions can be used for these items: <br>')
+              .concat(itemListStr.join(', '))
+              .concat('<br> For further information for actions of object please type: help [item].');
+        }
+    }
+
+    getAllItems(itemList) {
         let allItems = [];
-        for (let index = 0; index<itemList.length; index++) {
+        for (let index = 0; index < itemList.length; index++) {
             let currentItem = itemList[index];
             if (typeof currentItem === 'string') {
                 currentItem = {
-                    name: currentItem
+                    name: currentItem,
+                    helpSearch: currentItem.split(' '),
+                    helpText: 'Help text: This is ' + currentItem
                 }
             }
-            allItems.push(currentItem.name);
+            allItems.push(currentItem);
         }
-        return this.#help.concat('<br> find out which actions can be used for these items: <br>')
-          .concat(allItems.join(', '))
-          .concat('<br> For further information for actions of object please type: help [item].');
-
+        return allItems
     }
 }
 

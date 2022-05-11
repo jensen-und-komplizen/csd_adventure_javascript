@@ -2,8 +2,19 @@ class Player {
     #numberOfPockets = 4
     #pockets = new Array()
 
+    getPocket() {
+        return this.#pockets
+    }
+
     pickUp(item) {
         if (this.#pockets.length < this.#numberOfPockets) {
+            if (typeof item === 'string') {
+                item = {
+                    name: item,
+                    helpSearch: item.split(' '),
+                    helpText: 'This is ' + item
+                }
+            }
             this.#pockets.push(item)
             return true
         }
@@ -11,7 +22,13 @@ class Player {
     }
 
     has(item) {
-        return this.#pockets.includes(item)
+        let itemFound = false
+        this.#pockets.map((pocketItem) => {
+            if (pocketItem.name === item) {
+                itemFound = true;
+            }
+        })
+        return itemFound
     }
 
     throwAway(item) {

@@ -16,7 +16,7 @@ class Adventure {
         this.player = new Player()
         this.#loo = new Loo(this.player)
         this.#washRoom = new WashRoom()
-        this.#help = new Help()
+        this.#help = new Help(this.player)
         this.#currentRoom = this.#loo
         this.lastResponse = this.#currentRoom.getDescription()
         return this.lastResponse
@@ -25,14 +25,15 @@ class Adventure {
     tell(command) {
         let response
         let originalCommand = command
-        console.log(command)
         command = command.toLowerCase()
 
+        if(command === '' || command.startsWith('help')) {
+            response = this.displayHelp(command)
+            this.lastResponse = response
+            return response
+        }
+
         switch (command) {
-            case 'help':
-            case '':
-                response = this.displayHelp()
-                break
             case 'observe':
             case 'scout':
             case 'scout around':
@@ -92,8 +93,8 @@ class Adventure {
         return this.#currentRoom
     }
 
-    displayHelp() {
-        return this.#help.getHelpText(this.#currentRoom.getItems());
+    displayHelp(command) {
+        return this.#help.getHelpText(this.#currentRoom.getItems(), command, this.player);
     }
 }
 

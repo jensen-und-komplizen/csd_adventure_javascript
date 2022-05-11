@@ -59,5 +59,5 @@ test('Dollar cant be picked up twice', () => {
     loo = new Loo(new Player());
     loo.tell("pick up dollar")
     const response = loo.tell("pick up dollar")
-    expect(response).toContain('There is nothing to pick up.');
+    expect(response).toContain('There is no dollar to pick up.');
 });
