@@ -3,7 +3,8 @@
         "paths": [
             "test/features/**/*.feature"
         ],
-        "publishQuiet": true
+        "publishQuiet": true,
+        "format": ["summary", "junit:test-results/cucumber.xml"]
     }
 
 }
