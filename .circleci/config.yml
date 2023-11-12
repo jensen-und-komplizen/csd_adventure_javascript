@@ -23,7 +23,3 @@ jobs:
           name: Verify (Standard)
           command: npm run test
 
-  workflows:
-    test_my_app:
-      jobs:
-        - build
