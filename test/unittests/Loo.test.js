@@ -33,7 +33,15 @@ test('command "joke" should work', () => {
     loo = new Loo();
     const response = loo.tell("joke")
 	expect(jokes.includes(response)).toBe(true);
+});
 
+test('command "joke" should return "You\'ve read every joke." after all jokes have been read', () => {
+    loo = new Loo();
+    for(var i = 0; i < jokes.length; i++) {
+        loo.tell("joke")
+    }
+    const response = loo.tell("joke")
+	expect(response).toBe("You've read every joke.");
 });
 
 test("go to washroom", () => {

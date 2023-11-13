@@ -150,6 +150,8 @@ class Loo {
         if (this.#jokes.length > 0) {
             const idx = Math.floor(Math.random() * this.#jokes.length);
             response = this.#jokes[idx];
+
+            // remove joke from array so each joke is only told once
             this.#jokes.splice(idx, 1);
         }
         return response;
