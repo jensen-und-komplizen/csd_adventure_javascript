@@ -146,7 +146,13 @@ class Loo {
     }
 
 	getRandomNastyJoke() {
-		return this.#jokes[Math.floor(Math.random() * this.#jokes.length)];
+		let response = "You've read every joke.";
+        if (this.#jokes.length > 0) {
+            const idx = Math.floor(Math.random() * this.#jokes.length);
+            response = this.#jokes[idx];
+            this.#jokes.splice(idx, 1);
+        }
+        return response;
 	}
 }
 
