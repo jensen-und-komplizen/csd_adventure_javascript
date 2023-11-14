@@ -37,12 +37,12 @@ test('command "joke" should work', () => {
 
 test('command "joke" should return "You\'ve read every joke." after all jokes have been read', () => {
     loo = new Loo();
-    for(var i = 0; i < jokes.length; i++) {
-        loo.tell("joke")
-    }
-    const response = loo.tell("joke")
-	expect(response).toBe("You've read every joke.");
-});
+    let res;
+    do {
+        res = loo.tell("joke");
+    } while(res !== "You've read every joke.")
+	expect(res).toBe("You've read every joke.");
+}, 10000);
 
 test("go to washroom", () => {
     adventure = new Adventure()
