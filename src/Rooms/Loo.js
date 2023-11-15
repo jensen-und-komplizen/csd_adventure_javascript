@@ -3,7 +3,7 @@ const Console = require('console')
 class Loo {
     #items = new Array()
     #player
-	#jokes = [
+    #jokes = [
         'What did the toaster say to the sliced bread? I want you inside me!',
         `Chuck Noris doesn't ask ChatGPT, ChatGPT asks Chuck Noris`,
         'They say that during sex you burn off as many calories as running eight miles. Who the hell runs eight miles in 30 seconds?',
@@ -23,19 +23,20 @@ class Loo {
             name: 'an euro',
             type: 'item',
             helpSearch: ['euro'],
-            helpText: 'It is a one euro coin.<br>You can do: <br>"look at [item] <br>"take [item]"',
+            helpText:
+                'It is a one euro coin.<br>You can do: <br>"look at [item] <br>"take [item]"',
         })
         this.#items.push('a few magazines')
     }
 
     removeItem(item) {
-        for(let index = 0; index < this.#items.length; index++) {
-            let currentItem = this.#items[index];
-            if(typeof currentItem === 'string') {
+        for (let index = 0; index < this.#items.length; index++) {
+            let currentItem = this.#items[index]
+            if (typeof currentItem === 'string') {
                 if (currentItem.includes(item)) {
                     this.#items.splice(index, 1)
                 }
-            } else if(typeof currentItem === 'object') {
+            } else if (typeof currentItem === 'object') {
                 if (currentItem.id === item) {
                     this.#items.splice(index, 1)
                 }
@@ -73,7 +74,7 @@ class Loo {
             case 'playboy':
             case 'read playboy':
                 response = "I'd rather not."
-                break;
+                break
             case 'read nasty joke':
             case 'read nasty jokes':
             case 'nasty joke':
@@ -82,8 +83,8 @@ class Loo {
             case 'read jokes':
             case 'joke':
             case 'jokes':
-                response = this.getRandomNastyJoke();
-                break;
+                response = this.getRandomNastyJoke()
+                break
             case 'take dollar':
             case 'steal dollar':
             case 'dollar':
@@ -91,33 +92,24 @@ class Loo {
             case 'pick up a dollar':
             case 'take a dollar':
             case 'pick up dollar':
-                this.#items.map((item) => {
-                    if(item === "a dollar") {
-                        this.#player.pickUp('dollar')
-                        this.removeItem('dollar')
-                        response = 'You picked up the dollar.'
-                    }
-                })
-                if(response === null) {
-                    response = "There is no dollar to pick up.";
-                }
+                response = this.pickUpDollar()
                 break
-            case "take euro":
-            case "steal euro":
-            case "euro":
-            case "a euro":
-            case "pick up a euro":
-            case "take a euro":
-            case "pick up euro":
+            case 'take euro':
+            case 'steal euro':
+            case 'euro':
+            case 'a euro':
+            case 'pick up a euro':
+            case 'take a euro':
+            case 'pick up euro':
                 this.#items.map((item) => {
-                    if(item.id === "euro001") {
+                    if (item.id === 'euro001') {
                         this.#player.pickUp(item)
-                        this.removeItem("euro001")
-                        response = "You picked up the euro.";
+                        this.removeItem('euro001')
+                        response = 'You picked up the euro.'
                     }
                 })
-                if(response === null) {
-                    response = "There is no euro to pick up.";
+                if (response === null) {
+                    response = 'There is no euro to pick up.'
                 }
                 break
         }
@@ -125,7 +117,7 @@ class Loo {
     }
 
     getItems() {
-        return this.#items;
+        return this.#items
     }
 
     getDescription() {
@@ -133,29 +125,41 @@ class Loo {
     }
 
     getDetailedDescription() {
-        let allItems = [];
-        for(let index = 0; index < this.#items.length; index++) {
-            let currentItem = this.#items[index];
-            if(typeof currentItem === 'string') {
-                allItems.push(currentItem);
-            } else if(typeof currentItem === 'object') {
-                allItems.push(currentItem.name);
+        let allItems = []
+        for (let index = 0; index < this.#items.length; index++) {
+            let currentItem = this.#items[index]
+            if (typeof currentItem === 'string') {
+                allItems.push(currentItem)
+            } else if (typeof currentItem === 'object') {
+                allItems.push(currentItem.name)
             }
         }
-        return "You see " + allItems.join(', ') + "."
+        return 'You see ' + allItems.join(', ') + '.'
     }
 
-	getRandomNastyJoke() {
-		let response = "You've read every joke.";
+    getRandomNastyJoke() {
+        let response = "You've read every joke."
         if (this.#jokes.length > 0) {
-            const idx = Math.floor(Math.random() * this.#jokes.length);
-            response = this.#jokes[idx];
+            const idx = Math.floor(Math.random() * this.#jokes.length)
+            response = this.#jokes[idx]
 
             // remove joke from array so each joke is only told once
-            this.#jokes.splice(idx, 1);
+            this.#jokes.splice(idx, 1)
         }
-        return response;
-	}
+        return response
+    }
+
+    pickUpDollar() {
+        let response = 'There is no dollar to pick up.'
+        this.#items.map((item) => {
+            if (item === 'a dollar') {
+                this.#player.pickUp('dollar')
+                this.removeItem('dollar')
+                response = 'You picked up the dollar.'
+            }
+        })
+        return response
+    }
 }
 
 module.exports = Loo
