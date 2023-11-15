@@ -101,16 +101,7 @@ class Loo {
             case 'pick up a euro':
             case 'take a euro':
             case 'pick up euro':
-                this.#items.map((item) => {
-                    if (item.id === 'euro001') {
-                        this.#player.pickUp(item)
-                        this.removeItem('euro001')
-                        response = 'You picked up the euro.'
-                    }
-                })
-                if (response === null) {
-                    response = 'There is no euro to pick up.'
-                }
+                response = this.pickUpEuro()
                 break
         }
         return response
@@ -156,6 +147,18 @@ class Loo {
                 this.#player.pickUp('dollar')
                 this.removeItem('dollar')
                 response = 'You picked up the dollar.'
+            }
+        })
+        return response
+    }
+
+    pickUpEuro() {
+        let response = 'There is no euro to pick up.'
+        this.#items.map((item) => {
+            if (item.id === 'euro001') {
+                this.#player.pickUp(item)
+                this.removeItem('euro001')
+                response = 'You picked up the euro.'
             }
         })
         return response
