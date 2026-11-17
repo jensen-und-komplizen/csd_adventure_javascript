@@ -1,34 +1,78 @@
-# csd-javascript
+# csd-javascript Project
 
-## SETUP locally
+## Vorbereitungen
 
-### Clone the repo
+Um bestens auf den bevorstehenden Kurs vorbereitet zu sein, kannst du folgendes tun:
+1. Klone dieses Projekt und prüfe, ob du das Projekt bauen und ausführen kannst (s. [run dev server with hot reload for development](#run-dev-server-with-hot-reload-for-development))
+2. Gib uns Bescheid, damit wir dich zum GitHub-Projekt hinzufügen können (kontaktiere uns dafür über E-Mail z.B. [Björn](mailto:bjoern@jensen.coach))
 
-git clone `https://github.com/jensen-und-komplizen/csd-javascript`
+## On your machine
+### prerequisites
+Du brauchst eine aktuelle LTS-Version von [Node.js](https://nodejs.org/) (inkl. `npm`). Prüfe deine Version mit:
+```shell script
+node -v
+```
 
-### Check the `node` version
+### clone
+```shell script
+git clone https://github.com/jensen-und-komplizen/csd-javascript.git
+cd csd-javascript
+```
 
-run `node -v` in the terminal (16.14.2)
+### install dependencies
+```shell script
+npm install
+```
 
-### Install dependencies
+### run tests
+Alle Tests (Unit-Tests und Feature-Tests):
+```shell script
+npm test
+```
 
-run `npm install` in the console
+Nur die Unit-Tests ([Jest](https://jestjs.io/), unter `test/unittests`):
+```shell script
+npm run unit-tests
+```
 
-### Start the app
+Nur die Feature-Tests ([Cucumber](https://cucumber.io/), unter `test/features`):
+```shell script
+npm run feature-tests
+```
 
-`npm install`
+Die Testergebnisse werden zusätzlich als JUnit-XML nach `test-results/` geschrieben.
 
-## Changelog
+### run dev server with hot reload for development
+```shell script
+npm run dev
+```
 
-### Sprint 1
+Das Spiel läuft dann unter http://localhost:3000. Bei Änderungen in `src/` startet [nodemon](https://nodemon.io/) den Server automatisch neu.
 
-- Möglichkeit in den Waschraum zu gehen
+### format code
+```shell script
+npm run format
+```
 
-### Sprint 2
+### run the application
+```shell script
+node src/app.js
+```
 
-- Ich brauche Hilfe
-- Coin durch Dollar ersetzt.
-- 
-### Sprint 4
+## Project structure
 
-- Add euro as Object.
+```
+src/
+  app.js          Express-Server (Port 3000), liefert die Spielseite und den Endpoint /command
+  Adventure.js    Spiellogik: verarbeitet die eingegebenen Befehle
+  Characters/     Spielfiguren (z.B. Player)
+  Rooms/          Räume (z.B. Loo, WashRoom)
+  public/         Frontend (game.js, game.css, Help.js)
+test/
+  unittests/      Jest-Unit-Tests
+  features/       Cucumber-Features und Step-Definitionen (support/)
+```
+
+## Continuous Integration
+
+Bei jedem Push baut [CircleCI](https://circleci.com/) das Projekt und führt `npm test` aus (s. `.circleci/config.yml`).
