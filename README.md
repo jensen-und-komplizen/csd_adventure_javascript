@@ -60,9 +60,14 @@ npm run dev
 Das Spiel läuft dann unter http://localhost:3000. Bei Änderungen in `src/` startet [nodemon](https://nodemon.io/) den Server automatisch neu.
 
 ### format code
+Der Code wird mit [Prettier](https://prettier.io/) formatiert (Regeln in `.prettierrc`). Alle Dateien unter `src/` formatierst du mit:
 ```shell script
 npm run format
 ```
+
+Am einfachsten ist es, wenn deine IDE beim Speichern automatisch formatiert:
+- **VS Code:** Installiere die Erweiterung [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode). Wähle dann unter *Settings* bei „Default Formatter“ Prettier aus und aktiviere „Format On Save“.
+- **WebStorm / IntelliJ:** Unter *Settings → Languages & Frameworks → JavaScript → Prettier* „Automatic Prettier configuration“ wählen und „Run on save“ aktivieren.
 
 ### run the application
 ```shell script

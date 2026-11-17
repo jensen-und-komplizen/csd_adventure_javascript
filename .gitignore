@@ -259,3 +259,9 @@ test-results
 # Cypress
 test/cypress/cypress/screenshots/
 test/cypress/cypress/videos/
+
+# JetBrains IDE settings (WebStorm, IntelliJ)
+.idea/
+
+# VS Code settings
+.vscode/
