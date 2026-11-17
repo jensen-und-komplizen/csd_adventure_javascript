@@ -8,15 +8,15 @@ Um bestens auf den bevorstehenden Kurs vorbereitet zu sein, kannst du folgendes 
 
 ## On your machine
 ### prerequisites
-Du brauchst eine aktuelle LTS-Version von [Node.js](https://nodejs.org/) (inkl. `npm`). Prüfe deine Version mit:
+Du brauchst [Node.js](https://nodejs.org/) in Version 22 oder neuer (inkl. `npm`), empfohlen ist die aktuelle LTS-Version 24. Prüfe deine Version mit:
 ```shell script
 node -v
 ```
 
 ### clone
 ```shell script
-git clone https://github.com/jensen-und-komplizen/csd-javascript.git
-cd csd-javascript
+git clone https://github.com/jensen-und-komplizen/csd_adventure_javascript.git
+cd csd_adventure_javascript
 ```
 
 ### install dependencies
@@ -42,6 +42,16 @@ npm run feature-tests
 
 Die Testergebnisse werden zusätzlich als JUnit-XML nach `test-results/` geschrieben.
 
+### run UI tests
+Die Oberflächentests ([Cypress](https://www.cypress.io/), unter `test/cypress`) sind ein eigenes npm-Projekt und laufen im Browser gegen das gestartete Spiel. Starte dazu zuerst den Server (s. [run dev server with hot reload for development](#run-dev-server-with-hot-reload-for-development)) und dann in einem zweiten Terminal:
+```shell script
+cd test/cypress
+npm install
+npm test
+```
+
+Mit `npm run open` öffnet sich stattdessen die Cypress-Oberfläche, in der du die Tests interaktiv ausführen kannst.
+
 ### run dev server with hot reload for development
 ```shell script
 npm run dev
@@ -65,14 +75,16 @@ node src/app.js
 src/
   app.js          Express-Server (Port 3000), liefert die Spielseite und den Endpoint /command
   Adventure.js    Spiellogik: verarbeitet die eingegebenen Befehle
+  TimeService.js  Holt die aktuelle Zeit vom zentralen CSD-Time-Service
   Characters/     Spielfiguren (z.B. Player)
   Rooms/          Räume (z.B. Loo, WashRoom)
   public/         Frontend (game.js, game.css, Help.js)
 test/
   unittests/      Jest-Unit-Tests
   features/       Cucumber-Features und Step-Definitionen (support/)
+  cypress/        Cypress-Oberflächentests (eigenes npm-Projekt)
 ```
 
 ## Continuous Integration
 
-Bei jedem Push baut [CircleCI](https://circleci.com/) das Projekt und führt `npm test` aus (s. `.circleci/config.yml`).
+Bei jedem Push baut [CircleCI](https://circleci.com/) das Projekt mit Node.js 24, installiert die Abhängigkeiten mit `npm ci` und führt `npm test` aus (s. `.circleci/config.yml`). Die Cypress-Oberflächentests laufen nicht in der CI.

@@ -256,3 +256,6 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/node,webstorm
 test-results
+# Cypress
+test/cypress/cypress/screenshots/
+test/cypress/cypress/videos/
