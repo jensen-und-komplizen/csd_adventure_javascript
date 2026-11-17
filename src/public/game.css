@@ -1,20 +1,52 @@
 body {
     background: black;
-    color: forestgreen;
+    color: white;
     font-family: 'Space Mono', monospace;
     padding: 30px;
 }
 
+.container {
+    width: 50%;
+    margin-left: 25%;
+}
+
 input {
-    background: black;
-    caret-color: forestgreen;
-    caret-shape: underscore;
-    border: none;
-    color: forestgreen;
+    background: #333333;
+    caret-color: transparent;
+    border: 1px solid gray;
+    color: lightblue;
     font-family: 'Space Mono', monospace;
-    font-size: 1em;
+    font-size: 1.2em;
     margin: 1em 0;
+    border-radius: 10px;
+    padding-left: 10px;
     width: 100%;
+}
+
+/* blinking cursor at the end of the typed text; game.js keeps --cursor-chars up to date */
+#commandForm {
+    position: relative;
+    --cursor-chars: 0;
+}
+
+#commandForm:has(#command:focus)::after {
+    content: '_';
+    position: absolute;
+    /* 11px = border + padding-left of the input; long text scrolls, so stop at the right edge */
+    left: min(calc(11px + var(--cursor-chars) * 1ch), calc(100% - 11px - 1ch));
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2em;
+    pointer-events: none;
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }
 
 input:focus,
