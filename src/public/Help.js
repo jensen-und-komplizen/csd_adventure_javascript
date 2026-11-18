@@ -47,7 +47,7 @@ class Help {
             allItems.map((item) => {
                 itemListStr.push(item.name)
             })
-            return this.#help.concat('<br> find out which actions can be used for these items: <br>')
+            return this.#help.concat('<br> Find out which actions can be used for these items: <br>')
               .concat(itemListStr.join(', '))
               .concat('<br> For further information for actions of object please type: help [item].');
         }
