@@ -53,7 +53,8 @@ class Adventure {
             case 'move to washroom':
             case 'enter washroom':
                 this.#currentRoom = this.#washRoom
-                response = 'You enter the washroom.'
+                response = 'You enter the washroom. '
+                response += this.#currentRoom.getDetailedDescription()
                 break
             case 'loo':
             case 'enter the loo':
@@ -69,7 +70,8 @@ class Adventure {
                 }
 
                 this.#currentRoom = this.#loo
-                response = 'You enter the loo.'
+                response = 'You enter the loo. '
+                response += this.#currentRoom.getDetailedDescription()
                 break
             case 'count':
                 this.#counter++

@@ -50,6 +50,19 @@ test("go to washroom", () => {
     expect(adventure.tell("go to washroom")).toContain('You enter the washroom.');
 });
 
+test("go to washroom, look around", () => {
+    adventure = new Adventure()
+    adventure.start();
+    expect(adventure.tell("go to washroom")).toContain('You see');
+});
+
+test("go to loo, look around", () => {
+    adventure = new Adventure()
+    adventure.start();
+    adventure.tell('go to washroom')
+    expect(adventure.tell("go to loo")).toContain('You see');
+});
+
 test("go to washroom sets current room to washroom", () => {
     let adventure = new Adventure()
     adventure.start();
