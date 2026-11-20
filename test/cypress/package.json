@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "cypress run",
-    "open": "cypress open"
+    "start-app": "node ../../src/app.js",
+    "test": "node run-with-server.js run",
+    "open": "node run-with-server.js open",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
   },
   "devDependencies": {
-    "cypress": "^16.3.0"
+    "cypress": "^16.3.0",
+    "start-server-and-test": "^3.0.13"
   },
   "allowScripts": {
     "cypress@16.3.0": true
