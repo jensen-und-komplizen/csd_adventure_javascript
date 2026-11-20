@@ -1,7 +1,7 @@
 {
     "default": {
-        "paths": [
-            "test/features/**/*.feature"
+        "require": [
+            "test/features/support/**/*.js"
         ],
         "publishQuiet": true,
         "format": ["pretty", "junit:test-results/cucumber.xml"]

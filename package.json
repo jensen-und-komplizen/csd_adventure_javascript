@@ -8,7 +8,7 @@
   },
   "scripts": {
     "unit-tests": "jest",
-    "feature-tests": "npx cucumber-js",
+    "feature-tests": "npx cucumber-js test/features",
     "test": "npm run unit-tests && npm run feature-tests",
     "dev": "npx nodemon src/app.js",
     "format": "npx prettier --write src"

@@ -42,6 +42,35 @@ npm run feature-tests
 
 Die Testergebnisse werden zusätzlich als JUnit-XML nach `test-results/` geschrieben.
 
+### run single tests
+Einzelne Unit-Tests (Jest):
+```shell script
+# eine Testdatei (Argument ist ein Regex, "Loo" reicht also auch)
+npm run unit-tests -- test/unittests/Loo.test.js
+
+# einzelne Tests, deren Name (aus it/test/describe) den Text enthält
+npm run unit-tests -- test/unittests/Loo.test.js -t "Teil des Testnamens"
+
+# Watch-Modus: führt bei Änderungen nur die betroffenen Tests erneut aus
+npm run unit-tests -- --watch
+```
+
+Alternativ kannst du im Code `it.only(...)` bzw. `describe.only(...)` verwenden, dann läuft in dieser Datei nur dieser Test. Vor dem Commit wieder entfernen!
+
+Einzelne Feature-Tests (Cucumber):
+```shell script
+# eine Feature-Datei
+npx cucumber-js test/features/Loo.feature
+
+# ein Szenario über die Zeilennummer der "Scenario:"-Zeile
+npx cucumber-js test/features/Loo.feature:2
+
+# Szenarien, deren Name den Text enthält
+npx cucumber-js test/features --name "Teil des Szenarionamens"
+```
+
+Die Step-Definitionen aus `test/features/support/` werden dabei automatisch mitgeladen.
+
 ### run UI tests
 Die Oberflächentests ([Cypress](https://www.cypress.io/), unter `test/cypress`) sind ein eigenes npm-Projekt und laufen im Browser gegen das gestartete Spiel. Starte dazu zuerst den Server (s. [run dev server with hot reload for development](#run-dev-server-with-hot-reload-for-development)) und dann in einem zweiten Terminal:
 ```shell script
