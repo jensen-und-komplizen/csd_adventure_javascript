@@ -4,7 +4,7 @@
             "test/features/**/*.feature"
         ],
         "publishQuiet": true,
-        "format": ["summary", "junit:test-results/cucumber.xml"]
+        "format": ["pretty", "junit:test-results/cucumber.xml"]
     }
 
 }
