@@ -10,6 +10,8 @@
     "unit-tests": "jest",
     "feature-tests": "npx cucumber-js test/features",
     "test": "npm run unit-tests && npm run feature-tests",
+    "cypress-tests": "npm --prefix test/cypress test",
+    "cypress-open": "npm --prefix test/cypress run open",
     "dev": "npx nodemon src/app.js",
     "format": "npx prettier --write src"
   },

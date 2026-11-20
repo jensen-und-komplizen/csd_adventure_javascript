@@ -74,12 +74,11 @@ Die Step-Definitionen aus `test/features/support/` werden dabei automatisch mitg
 ### run UI tests
 Die Oberflächentests ([Cypress](https://www.cypress.io/), unter `test/cypress`) sind ein eigenes npm-Projekt und laufen im Browser gegen das gestartete Spiel. Starte dazu zuerst den Server (s. [run dev server with hot reload for development](#run-dev-server-with-hot-reload-for-development)) und dann in einem zweiten Terminal:
 ```shell script
-cd test/cypress
-npm install
-npm test
+npm --prefix test/cypress install
+npm run cypress-tests
 ```
 
-Mit `npm run open` öffnet sich stattdessen die Cypress-Oberfläche, in der du die Tests interaktiv ausführen kannst.
+Mit `npm run cypress-open` öffnet sich stattdessen die Cypress-Oberfläche, in der du die Tests interaktiv ausführen kannst.
 
 ### run dev server with hot reload for development
 ```shell script
