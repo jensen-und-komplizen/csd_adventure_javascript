@@ -26,6 +26,10 @@ npm install
 
 Dabei werden über ein `postinstall`-Script auch die Abhängigkeiten der Cypress-Tests in `test/cypress` installiert.
 
+Normalerweise musst du `npm install` aber gar nicht selbst aufrufen: `npm test`, `npm run dev` und die anderen Test-Scripts prüfen vorher über `tools/ensure-deps.js`, ob alle Pakete installiert sind, und installieren fehlende nach, z.B. nach einem frischen Clone oder wenn sich nach einem `git pull` die `package.json` oder `package-lock.json` geändert hat. Ist alles aktuell, kostet die Prüfung nur einen Sekundenbruchteil.
+
+Auch das Cypress-Programm wird dabei geprüft und bei Bedarf nachinstalliert. Es liegt nicht in `node_modules`, sondern in einem globalen Cache (macOS: `~/Library/Caches/Cypress`, Linux: `~/.cache/Cypress`, Windows: `%LOCALAPPDATA%\Cypress\Cache`). Möchtest du einen anderen Ort verwenden, setze die Umgebungsvariable [`CYPRESS_CACHE_FOLDER`](https://docs.cypress.io/app/references/advanced-installation#Binary-cache), Cypress und die Prüfung verwenden dann beide diesen Ordner. Mit `CYPRESS_INSTALL_BINARY=0` wird das Cypress-Programm gar nicht installiert, z.B. wenn du die UI-Tests nicht brauchst.
+
 ### run tests
 Alle Tests (Unit-Tests, Feature-Tests und Cypress-Oberflächentests):
 ```shell script

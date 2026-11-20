@@ -8,13 +8,21 @@
   },
   "scripts": {
     "postinstall": "npm --prefix test/cypress install",
+    "preunit-tests": "node tools/ensure-deps.js",
     "unit-tests": "jest",
+    "prefeature-tests": "node tools/ensure-deps.js",
     "feature-tests": "npx cucumber-js test/features",
+    "pretest": "node tools/ensure-deps.js",
     "test": "npm run fast-tests && npm run cypress-tests",
+    "prefast-tests": "node tools/ensure-deps.js",
     "fast-tests": "npm run unit-tests && npm run feature-tests",
+    "precypress-tests": "node tools/ensure-deps.js",
     "cypress-tests": "npm --prefix test/cypress test",
+    "precypress-open": "node tools/ensure-deps.js",
     "cypress-open": "npm --prefix test/cypress run open",
+    "predev": "node tools/ensure-deps.js",
     "dev": "npx nodemon src/app.js",
+    "preformat": "node tools/ensure-deps.js",
     "format": "npx prettier --write src"
   },
   "repository": {
