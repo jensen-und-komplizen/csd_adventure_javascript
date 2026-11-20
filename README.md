@@ -24,13 +24,15 @@ cd csd_adventure_javascript
 npm install
 ```
 
+Dabei werden über ein `postinstall`-Script auch die Abhängigkeiten der Cypress-Tests in `test/cypress` installiert.
+
 ### run tests
 Alle Tests (Unit-Tests, Feature-Tests und Cypress-Oberflächentests):
 ```shell script
 npm test
 ```
 
-Für die Cypress-Tests muss der Server laufen und die Cypress-Abhängigkeiten müssen installiert sein (s. [run UI tests](#run-ui-tests)).
+Für die Cypress-Tests muss der Server laufen (s. [run UI tests](#run-ui-tests)).
 
 Nur Unit-Tests und Feature-Tests, ohne Cypress (schnell, kein laufender Server nötig):
 ```shell script
@@ -79,9 +81,8 @@ npx cucumber-js test/features --name "Teil des Szenarionamens"
 Die Step-Definitionen aus `test/features/support/` werden dabei automatisch mitgeladen.
 
 ### run UI tests
-Die Oberflächentests ([Cypress](https://www.cypress.io/), unter `test/cypress`) sind ein eigenes npm-Projekt und laufen im Browser gegen das gestartete Spiel. Starte dazu zuerst den Server (s. [run dev server with hot reload for development](#run-dev-server-with-hot-reload-for-development)) und dann in einem zweiten Terminal:
+Die Oberflächentests ([Cypress](https://www.cypress.io/), unter `test/cypress`) sind ein eigenes npm-Projekt und laufen im Browser gegen das gestartete Spiel. Ihre Abhängigkeiten werden bei `npm install` automatisch mitinstalliert. Starte zuerst den Server (s. [run dev server with hot reload for development](#run-dev-server-with-hot-reload-for-development)) und dann in einem zweiten Terminal:
 ```shell script
-npm --prefix test/cypress install
 npm run cypress-tests
 ```
 
