@@ -32,9 +32,9 @@ Alle Tests (Unit-Tests, Feature-Tests und Cypress-Oberflächentests):
 npm test
 ```
 
-Für die Cypress-Tests muss der Server laufen (s. [run UI tests](#run-ui-tests)).
+Die Cypress-Tests starten dafür automatisch eine eigene Instanz des Spiels (s. [run UI tests](#run-ui-tests)), du musst vorher keinen Server starten.
 
-Nur Unit-Tests und Feature-Tests, ohne Cypress (schnell, kein laufender Server nötig):
+Nur Unit-Tests und Feature-Tests, ohne Cypress (schnell, ohne Browser):
 ```shell script
 npm run fast-tests
 ```
@@ -81,19 +81,21 @@ npx cucumber-js test/features --name "Teil des Szenarionamens"
 Die Step-Definitionen aus `test/features/support/` werden dabei automatisch mitgeladen.
 
 ### run UI tests
-Die Oberflächentests ([Cypress](https://www.cypress.io/), unter `test/cypress`) sind ein eigenes npm-Projekt und laufen im Browser gegen das gestartete Spiel. Ihre Abhängigkeiten werden bei `npm install` automatisch mitinstalliert. Starte zuerst den Server (s. [run dev server with hot reload for development](#run-dev-server-with-hot-reload-for-development)) und dann in einem zweiten Terminal:
+Die Oberflächentests ([Cypress](https://www.cypress.io/), unter `test/cypress`) sind ein eigenes npm-Projekt und laufen im Browser gegen das Spiel. Ihre Abhängigkeiten werden bei `npm install` automatisch mitinstalliert.
 ```shell script
 npm run cypress-tests
 ```
 
 Mit `npm run cypress-open` öffnet sich stattdessen die Cypress-Oberfläche, in der du die Tests interaktiv ausführen kannst.
 
+Beide Befehle starten automatisch eine eigene Instanz des Spiels nur für die Tests und fahren sie danach wieder herunter. Diese Instanz läuft auf Port 3001, oder auf dem nächsten freien Port, falls 3001 belegt ist. Ein laufender Dev-Server auf Port 3000 stört also nicht, und die Tests laufen immer gegen einen frisch gestarteten Spielstand. Gesteuert wird das über `test/cypress/run-with-server.js`.
+
 ### run dev server with hot reload for development
 ```shell script
 npm run dev
 ```
 
-Das Spiel läuft dann unter http://localhost:3000. Bei Änderungen in `src/` startet [nodemon](https://nodemon.io/) den Server automatisch neu.
+Das Spiel läuft dann unter http://localhost:3000. Einen anderen Port kannst du über die Umgebungsvariable `PORT` setzen, z.B. `PORT=4000 npm run dev`. Bei Änderungen in `src/` startet [nodemon](https://nodemon.io/) den Server automatisch neu.
 
 ### format code
 Der Code wird mit [Prettier](https://prettier.io/) formatiert (Regeln in `.prettierrc`). Alle Dateien unter `src/` formatierst du mit:
@@ -114,7 +116,7 @@ node src/app.js
 
 ```
 src/
-  app.js          Express-Server (Port 3000), liefert die Spielseite und den Endpoint /command
+  app.js          Express-Server (Port 3000 bzw. $PORT), liefert die Spielseite und den Endpoint /command
   Adventure.js    Spiellogik: verarbeitet die eingegebenen Befehle
   TimeService.js  Holt die aktuelle Zeit vom zentralen CSD-Time-Service
   Characters/     Spielfiguren (z.B. Player)
