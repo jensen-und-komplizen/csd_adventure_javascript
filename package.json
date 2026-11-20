@@ -7,9 +7,13 @@
     "test": "test"
   },
   "scripts": {
+    "postinstall": "npm --prefix test/cypress install",
     "unit-tests": "jest",
-    "feature-tests": "npx cucumber-js",
-    "test": "npm run unit-tests && npm run feature-tests",
+    "feature-tests": "npx cucumber-js test/features",
+    "test": "npm run fast-tests && npm run cypress-tests",
+    "fast-tests": "npm run unit-tests && npm run feature-tests",
+    "cypress-tests": "npm --prefix test/cypress test",
+    "cypress-open": "npm --prefix test/cypress run open",
     "dev": "npx nodemon src/app.js",
     "format": "npx prettier --write src"
   },
