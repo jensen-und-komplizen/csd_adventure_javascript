@@ -25,9 +25,16 @@ npm install
 ```
 
 ### run tests
-Alle Tests (Unit-Tests und Feature-Tests):
+Alle Tests (Unit-Tests, Feature-Tests und Cypress-Oberflächentests):
 ```shell script
 npm test
+```
+
+Für die Cypress-Tests muss der Server laufen und die Cypress-Abhängigkeiten müssen installiert sein (s. [run UI tests](#run-ui-tests)).
+
+Nur Unit-Tests und Feature-Tests, ohne Cypress (schnell, kein laufender Server nötig):
+```shell script
+npm run fast-tests
 ```
 
 Nur die Unit-Tests ([Jest](https://jestjs.io/), unter `test/unittests`):
@@ -120,4 +127,4 @@ test/
 
 ## Continuous Integration
 
-Bei jedem Push baut [CircleCI](https://circleci.com/) das Projekt mit Node.js 24, installiert die Abhängigkeiten mit `npm ci` und führt `npm test` aus (s. `.circleci/config.yml`). Die Cypress-Oberflächentests laufen nicht in der CI.
+Bei jedem Push baut [CircleCI](https://circleci.com/) das Projekt mit Node.js 24, installiert die Abhängigkeiten mit `npm ci` und führt `npm run fast-tests` aus (s. `.circleci/config.yml`). Die Cypress-Oberflächentests laufen nicht in der CI.

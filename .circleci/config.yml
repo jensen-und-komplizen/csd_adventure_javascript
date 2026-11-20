@@ -21,6 +21,6 @@ jobs:
           key: v3-dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: Verify (Standard)
-          command: npm run test
+          command: npm run fast-tests
       - store_test_results:
           path: test-results
