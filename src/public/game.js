@@ -29,18 +29,17 @@ $(document).ready(function () {
     $(window).on('focus', function () {
         $('#command').focus()
     })
-    $('#commandForm').submit(function (event) {
-        event.preventDefault()
-        $.ajax({
-            url: '/command',
-            data: { command: $('#command').val() },
-        }).done(function (data) {
-            if (console && console.log) {
-                console.log('Sample of data--:', data.slice(0, 100))
-            }
-            $('#gameInfo').html(data)
-            $('#command').val('')
-            updateCursorPosition()
-        })
+$('#commandForm').submit(function (event) {
+    event.preventDefault()
+
+    $.ajax({
+        url: '/command',
+        data: { command: $('#command').val() },
+    }).done(function (data) {
+        $('#gameInfo').html(data.text)
+        $('#roomHeading').text(data.heading)
+        $('#command').val('')
+        updateCursorPosition()
     })
+})
 })

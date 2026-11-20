@@ -82,3 +82,9 @@ test('Dollar cant be picked up twice', () => {
     const response = loo.tell("pick up dollar")
     expect(response).toContain('There is no dollar to pick up.');
 });
+
+test('Loo has the correct heading', () => {
+    const loo = new Loo(new Player())
+
+    expect(loo.getHeading()).toBe('You are in the loo')
+})

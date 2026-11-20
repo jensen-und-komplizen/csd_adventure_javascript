@@ -111,6 +111,9 @@ class Loo {
         return this.#items
     }
 
+getHeading() {
+    return 'You are in the loo'
+}
     getDescription() {
         return 'You wake up on the loo. You have no idea where or who you are.'
     }
